@@ -23,10 +23,12 @@ namespace VismaCase
             modelBuilder.Entity<Position>(entity =>
             {
                 entity.HasKey(p => p.Id);
+                entity.HasOne(p => p.Employee);
             });
             modelBuilder.Entity<WorkTask>(entity =>
             {
                 entity.HasKey(t => t.Id);
+                entity.HasOne(t => t.Employee);
             });
             base.OnModelCreating(modelBuilder);
         }

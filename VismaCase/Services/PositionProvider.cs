@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading.Tasks;
 using VismaCase.Models;
 
@@ -20,12 +21,17 @@ namespace VismaCase.Services
 
         public async Task<Position[]> GetAll()
         {
-            return await _db.Positions.ToArrayAsync();
+            return await _db.Positions
+                    .Include(p => p.Employee)
+                    .ToArrayAsync();
         }
 
         public async Task<Position> GetById(int id)
         {
-            return await _db.Positions.FindAsync(id);
+            return await _db.Positions
+                    .Where(p => p.Id == id)
+                    .Include(p => p.Employee)
+                    .FirstAsync();
         }
     }
 }

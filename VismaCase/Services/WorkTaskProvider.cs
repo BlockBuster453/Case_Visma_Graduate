@@ -1,13 +1,14 @@
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading.Tasks;
 using VismaCase.Models;
 
 namespace VismaCase.Services
 {
-    public class TaskProvider : IWorkTaskProvider
+    public class WorkTaskProvider : IWorkTaskProvider
     {
         private readonly AppContext _db;
-        public TaskProvider(AppContext db)
+        public WorkTaskProvider(AppContext db)
         {
             _db = db;
         }
@@ -20,12 +21,15 @@ namespace VismaCase.Services
 
         public async Task<WorkTask[]> GetAll()
         {
-            return await _db.WorkTasks.ToArrayAsync();
+            return await _db.WorkTasks.Include(t => t.Employee).ToArrayAsync();
         }
 
         public async Task<WorkTask> GetById(int id)
         {
-            return await _db.WorkTasks.FindAsync(id);
+            return await _db.WorkTasks
+                    .Where(t => t.Id == id)
+                    .Include(t => t.Employee)
+                    .FirstAsync();
         }
     }
 }

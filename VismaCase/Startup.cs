@@ -31,7 +31,7 @@ namespace VismaCase
             );
             services.AddScoped<IEmployeeProvider, EmployeeProvider>();
             services.AddScoped<IPositionProvider, PositionProvider>();
-            services.AddScoped<IWorkTaskProvider, TaskProvider>();
+            services.AddScoped<IWorkTaskProvider, WorkTaskProvider>();
             services.AddRazorPages();
         }
 
