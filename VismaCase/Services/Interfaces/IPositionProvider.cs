@@ -8,5 +8,6 @@ namespace VismaCase
         Task<Position[]> GetAll();
         Task AddPosition(Position position);
         Task<Position> GetById(int id);
+        Task<Position[]> GetPositionsForEmployee(Employee employee);
     }
 }
