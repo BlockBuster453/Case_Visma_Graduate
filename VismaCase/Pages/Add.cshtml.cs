@@ -8,9 +8,12 @@ namespace VismaCase.Pages
         private readonly ILogger<AddModel> _logger;
         private readonly IEmployeeProvider _employeeProvider;
         private readonly IPositionProvider _positionProvider;
-        private readonly ITaskProvider _taskProvider;
+        private readonly IWorkTaskProvider _taskProvider;
 
-        public AddModel(ILogger<AddModel> logger, IEmployeeProvider employeeProvider, IPositionProvider positionProvider, ITaskProvider taskProvider)
+        public AddModel(ILogger<AddModel> logger,
+            IEmployeeProvider employeeProvider,
+            IPositionProvider positionProvider,
+            IWorkTaskProvider taskProvider)
         {
             _logger = logger;
             _employeeProvider = employeeProvider;
