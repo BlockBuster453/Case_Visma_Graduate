@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using VismaCase.Models;
 
 namespace VismaCase
 {
@@ -12,11 +13,22 @@ namespace VismaCase
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // .isUnique på en Key vil sørge for at det kommer
+            // en exception om man legger inn noe med samme Key
+
             modelBuilder.Entity<Employee>(entity =>
             {
-                entity.HasKey(f => f.Id);
+                entity.HasIndex(e => e.Id).IsUnique();
             });
-            base.onModelCreating(modelBuilder);
+            modelBuilder.Entity<Position>(entity =>
+            {
+                entity.HasIndex(p => p.Id).IsUnique();
+            });
+            modelBuilder.Entity<Task>(entity =>
+            {
+                entity.HasIndex(t => t.Id).IsUnique();
+            });
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

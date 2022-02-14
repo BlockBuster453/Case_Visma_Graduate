@@ -3,9 +3,12 @@ using System.Threading.Tasks;
 
 namespace VismaCase.Services
 {
-    private readonly AppContext _db;
-    public PositionProvider(AppContext db)
+    public class PositionProvider : IPositionProvider
     {
-        _db = db;
+        private readonly AppContext _db;
+        public PositionProvider(AppContext db)
+        {
+            _db = db;
+        }
     }
 }

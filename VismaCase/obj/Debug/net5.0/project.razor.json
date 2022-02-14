@@ -15634,6 +15634,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/Pages/Add.cshtml",
+      "TargetPath": "Pages\\Add.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/Pages/_ViewStart.cshtml",
       "TargetPath": "Pages\\_ViewStart.cshtml",
       "FileKind": "mvc"

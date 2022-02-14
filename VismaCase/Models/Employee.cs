@@ -1,8 +1,10 @@
-namespace VismaCase
+using System;
+
+namespace VismaCase.Models
 {
     public class Employee
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public String FirstName { get; set; }
         public String LastName { get; set; }
     }

@@ -2,6 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using VismaCase.Services;
 
 namespace VismaCase
 {
@@ -22,6 +29,9 @@ namespace VismaCase
             services.AddDbContext<AppContext>(
                 options => options.UseSqlite("Filename=database.db")
             );
+            services.AddScoped<IEmployeeProvider, EmployeeProvider>();
+            services.AddScoped<IPositionProvider, PositionProvider>();
+            services.AddScoped<ITaskProvider, TaskProvider>();
             services.AddRazorPages();
         }
 
