@@ -9,7 +9,7 @@ namespace VismaCase
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Position> Positions { get; set; }
-        public DbSet<Task> Tasks { get; set; }
+        public DbSet<WorkTask> WorkTasks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -18,15 +18,15 @@ namespace VismaCase
 
             modelBuilder.Entity<Employee>(entity =>
             {
-                entity.HasIndex(e => e.Id).IsUnique();
+                entity.HasKey(e => e.Id);
             });
             modelBuilder.Entity<Position>(entity =>
             {
-                entity.HasIndex(p => p.Id).IsUnique();
+                entity.HasKey(p => p.Id);
             });
-            modelBuilder.Entity<Task>(entity =>
+            modelBuilder.Entity<WorkTask>(entity =>
             {
-                entity.HasIndex(t => t.Id).IsUnique();
+                entity.HasKey(t => t.Id);
             });
             base.OnModelCreating(modelBuilder);
         }
