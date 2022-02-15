@@ -8,40 +8,50 @@ namespace VismaCase.Services
 {
     public class WorkTaskProvider : IWorkTaskProvider
     {
-        private readonly AppContext _db;
-        public WorkTaskProvider(AppContext db)
+        private readonly AppDbContext _db;
+        public WorkTaskProvider(AppDbContext db)
         {
             _db = db;
         }
 
-        public async Task AddWorkTask(WorkTask task)
+        public async Task Add(WorkTask task)
         {
             var validTime = false;
             var employee = task.Employee;
-            var employeePositions = await _db.Positions
-                                    .Where(p => p.Employee.Id == employee.Id)
-                                    .ToArrayAsync();
-            foreach (var pos in employeePositions)
-            {
-                // Om tidspunktet for en oppgave er i tidsrommet for minst
-                // én stilling vil den være gyldig
-                if (task.Date > pos.StartTime || task.Date < pos.EndTime)
+            var pProvider = new PositionProvider(_db);
+            var employeePositions = await pProvider.GetPositionsForEmployee(employee);
+            if (employeePositions.Length > 0) {
+                foreach (var pos in employeePositions)
                 {
-                    validTime = true;
+                    // Om tidspunktet for en oppgave er i tidsrommet for minst
+                    // én stilling vil den være gyldig
+
+                    if (task.Date.Ticks >= pos.StartTime.Ticks && task.Date.Ticks <= pos.EndTime.Ticks)
+                    {
+                        validTime = true;
+                        task.Position = pos;
+                        await _db.WorkTasks.AddAsync(task);
+                        await _db.SaveChangesAsync();
+                        return;
+                    }
+                }
+                if (!validTime)
+                {
+                    throw new Exception("Ingen stilling på dette tidspunktet");
                 }
             }
-            if (!validTime)
-            {
-                throw new Exception("Ingen stilling på dette tidspunktet");
+            else {
+                throw new Exception("Ingen stillinger for denne ansatte");
             }
-
-            await _db.WorkTasks.AddAsync(task);
-            await _db.SaveChangesAsync();
         }
 
         public async Task<WorkTask[]> GetAll()
         {
-            return await _db.WorkTasks.Include(t => t.Employee).ToArrayAsync();
+            return await _db.WorkTasks
+                    .Include(t => t.Employee)
+                    .Include(t => t.Position)
+                    .ThenInclude(p => p.Employee)
+                    .ToArrayAsync();
         }
 
         public async Task<WorkTask> GetById(int id)
@@ -49,7 +59,9 @@ namespace VismaCase.Services
             return await _db.WorkTasks
                     .Where(t => t.Id == id)
                     .Include(t => t.Employee)
-                    .FirstAsync();
+                    .Include(t => t.Position)
+                    .ThenInclude(p => p.Employee)
+                    .FirstOrDefaultAsync();
         }
     }
 }

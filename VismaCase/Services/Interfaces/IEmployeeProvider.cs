@@ -7,7 +7,7 @@ namespace VismaCase
     public interface IEmployeeProvider
     {
         Task<Employee[]> GetAll();
-        Task AddEmployee(Employee employee);
+        Task Add(Employee employee);
         Task<Employee> GetById(int id);
     }
 }

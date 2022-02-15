@@ -4,14 +4,14 @@
     "/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCaseTest/VismaCaseTest.csproj": {}
   },
   "projects": {
-    "/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCaseTest/VismaCaseTest.csproj": {
+    "/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/VismaCase.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCaseTest/VismaCaseTest.csproj",
-        "projectName": "VismaCaseTest",
-        "projectPath": "/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCaseTest/VismaCaseTest.csproj",
+        "projectUniqueName": "/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/VismaCase.csproj",
+        "projectName": "VismaCase",
+        "projectPath": "/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/VismaCase.csproj",
         "packagesPath": "/Users/edvingrytnes/.nuget/packages/",
-        "outputPath": "/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCaseTest/obj/",
+        "outputPath": "/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/edvingrytnes/.nuget/NuGet/NuGet.Config"
@@ -38,9 +38,100 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Bogus": {
+              "target": "Package",
+              "version": "[33.1.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.400/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCaseTest/VismaCaseTest.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCaseTest/VismaCaseTest.csproj",
+        "projectName": "VismaCaseTest",
+        "projectPath": "/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCaseTest/VismaCaseTest.csproj",
+        "packagesPath": "/Users/edvingrytnes/.nuget/packages/",
+        "outputPath": "/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCaseTest/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/edvingrytnes/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/VismaCase.csproj": {
+                "projectPath": "/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/VismaCase.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.Testing": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[16.9.4, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.16.1, )"
             },
             "coverlet.collector": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",

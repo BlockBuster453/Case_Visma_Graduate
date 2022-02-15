@@ -8,29 +8,42 @@ namespace VismaCase.Services
 {
     public class PositionProvider : IPositionProvider
     {
-        private readonly AppContext _db;
-        public PositionProvider(AppContext db)
+        private readonly AppDbContext _db;
+        public PositionProvider(AppDbContext db)
         {
             _db = db;
         }
 
-        public async Task AddPosition(Position position)
+        public async Task Add(Position position)
         {
             var employee = position.Employee;
             var employeePositions = await GetPositionsForEmployee(employee);
-            foreach (var pos in employeePositions)
+            if (employeePositions.Length > 0)
             {
-                if ((position.StartTime > pos.StartTime
-                    && position.StartTime < pos.EndTime) // Ser om en stilling starter samtidig som en annen holder på
-                    || (position.EndTime < pos.EndTime
-                    && position.EndTime > pos.StartTime)) // Ser om en stilling avslutter samtidig som en annen holder på
+                foreach (var pos in employeePositions)
                 {
-                    throw new Exception("Ugyldig tidspunkt for Stilling");
+                    if ((position.StartTime.Ticks > pos.StartTime.Ticks
+                        && position.StartTime.Ticks < pos.EndTime.Ticks) // Ser om en stilling starter samtidig som en annen holder på
+                        || (position.EndTime.Ticks < pos.EndTime.Ticks
+                        && position.EndTime.Ticks > pos.StartTime.Ticks)
+                        || (position.StartTime.Ticks < pos.StartTime.Ticks
+                        && position.EndTime.Ticks > pos.EndTime.Ticks)) // Ser om en stilling avslutter samtidig som en annen holder på
+                    {
+                        throw new Exception("Ugyldig (Overlapper med annen stilling)");
+                    }
+                    else
+                    {
+                        await _db.Positions.AddAsync(position);
+                        await _db.SaveChangesAsync();
+                    }
                 }
             }
+            else
+            {
+                await _db.Positions.AddAsync(position);
+                await _db.SaveChangesAsync();
+            }
 
-            await _db.Positions.AddAsync(position);
-            await _db.SaveChangesAsync();
         }
 
         public async Task<Position[]> GetAll()
@@ -45,14 +58,21 @@ namespace VismaCase.Services
             return await _db.Positions
                     .Where(p => p.Id == id)
                     .Include(p => p.Employee)
-                    .FirstAsync();
+                    .FirstOrDefaultAsync();
         }
 
         public async Task<Position[]> GetPositionsForEmployee(Employee employee)
         {
-            return await _db.Positions
-                    .Where(p => p.Employee.Id == employee.Id)
+            try
+            {
+                return await _db.Positions
+                    .Where(p => p.Employee == employee)
                     .ToArrayAsync();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }

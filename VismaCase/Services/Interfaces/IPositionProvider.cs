@@ -6,7 +6,7 @@ namespace VismaCase
     public interface IPositionProvider
     {
         Task<Position[]> GetAll();
-        Task AddPosition(Position position);
+        Task Add(Position position);
         Task<Position> GetById(int id);
         Task<Position[]> GetPositionsForEmployee(Employee employee);
     }

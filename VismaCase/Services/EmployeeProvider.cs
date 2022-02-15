@@ -6,13 +6,13 @@ namespace VismaCase.Services
 {
     public class EmployeeProvider : IEmployeeProvider
     {
-        private readonly AppContext _db;
-        public EmployeeProvider(AppContext db)
+        private readonly AppDbContext _db;
+        public EmployeeProvider(AppDbContext db)
         {
             _db = db;
         }
 
-        public async Task AddEmployee(Employee employee)
+        public async Task Add(Employee employee)
         {
             await _db.Employees.AddAsync(employee);
             await _db.SaveChangesAsync();

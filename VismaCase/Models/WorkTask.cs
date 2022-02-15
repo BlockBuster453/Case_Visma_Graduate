@@ -8,5 +8,6 @@ namespace VismaCase.Models
         public String Name { get; set; }
         public Employee Employee { get; set; }
         public DateTime Date { get; set; }
+        public Position Position { get; set; }
     }
 }

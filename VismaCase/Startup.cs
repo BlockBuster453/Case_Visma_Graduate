@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -26,12 +22,15 @@ namespace VismaCase
         {
             services.AddControllers();
             services.AddMvc();
-            services.AddDbContext<AppContext>(
+            services.AddDbContext<AppDbContext>(
                 options => options.UseSqlite("Filename=database.db")
             );
             services.AddScoped<IEmployeeProvider, EmployeeProvider>();
+            services.AddTransient<IEmployeeValidator, EmployeeValidator>();
             services.AddScoped<IPositionProvider, PositionProvider>();
+            services.AddTransient<IPositionValidator, PositionValidator>();
             services.AddScoped<IWorkTaskProvider, WorkTaskProvider>();
+            services.AddTransient<IWorkTaskValidator, WorkTaskValidator>();
             services.AddRazorPages();
         }
 

@@ -3,7 +3,7 @@ using VismaCase.Models;
 
 namespace VismaCase.Services
 {
-    public class TaskValidator : IWorkTaskValidator
+    public class WorkTaskValidator : IWorkTaskValidator
     {
         public string[] IsValid(WorkTask task)
         {

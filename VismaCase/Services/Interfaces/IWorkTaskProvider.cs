@@ -6,7 +6,7 @@ namespace VismaCase
     public interface IWorkTaskProvider
     {
         Task<WorkTask[]> GetAll();
-        Task AddWorkTask(WorkTask task);
+        Task Add(WorkTask task);
         Task<WorkTask> GetById(int id);
     }
 }
