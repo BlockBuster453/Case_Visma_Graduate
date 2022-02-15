@@ -17,22 +17,29 @@ namespace VismaCase
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // .isUnique på en Key vil sørge for at det kommer
-            // en exception om man legger inn noe med samme Key
+            // Id defineres som key, det sørge for automatisk inkrementering
+            // og vil gi exception skulle det være duplikat
+
+            // Det er også en composite key på hver table som er satt til
+            // å være unik, slik at det kommer en exception
+            // om flere har samme composite key
 
             modelBuilder.Entity<Employee>(entity =>
             {
                 entity.HasKey(e => e.Id);
+                entity.HasIndex("FirstName", "LastName").IsUnique();
             });
             modelBuilder.Entity<Position>(entity =>
             {
                 entity.HasKey(p => p.Id);
                 entity.HasOne(p => p.Employee);
+                entity.HasIndex("Name", "Employee", "StartTime", "EndTime").IsUnique();
             });
             modelBuilder.Entity<WorkTask>(entity =>
             {
                 entity.HasKey(t => t.Id);
                 entity.HasOne(t => t.Employee);
+                entity.HasIndex("Name", "Employee", "Date").IsUnique();
             });
             base.OnModelCreating(modelBuilder);
         }

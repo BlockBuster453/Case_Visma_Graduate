@@ -15624,6 +15624,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/Pages/View.cshtml",
+      "TargetPath": "Pages\\View.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/Pages/Index.cshtml",
       "TargetPath": "Pages\\Index.cshtml",
       "FileKind": "mvc"
@@ -15641,6 +15646,11 @@
     {
       "FilePath": "/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/Pages/_ViewStart.cshtml",
       "TargetPath": "Pages\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/Pages/Search.cshtml",
+      "TargetPath": "Pages\\Search.cshtml",
       "FileKind": "mvc"
     },
     {
