@@ -75,6 +75,7 @@ namespace VismaCaseTest
                 position.EndTime = new DateTime(2023, 7, 1);
                 var pEmployee = await eProvider.GetById(1);
                 position.Employee = pEmployee;
+                position.EmployeeId = pEmployee.Id;
 
                 if (pValidator.IsValid(position).Length == 0)
                 {
@@ -85,7 +86,9 @@ namespace VismaCaseTest
                 workTask.Name = "Løs case";
                 var wEmployee = await eProvider.GetById(1);
                 workTask.Employee = wEmployee;
+                workTask.EmployeeId = wEmployee.Id;
                 workTask.Date = new DateTime(2022, 2, 17);
+
                 if (wValidator.IsValid(workTask).Length == 0)
                 {
                     await wProvider.Add(workTask);
@@ -129,6 +132,7 @@ namespace VismaCaseTest
                 position.StartTime = new DateTime(2022, 2, 1);
                 position.EndTime = new DateTime(2023, 7, 1);
                 position.Employee = await eProvider.GetById(1);
+                position.EmployeeId = position.Employee.Id;
 
                 if (pValidator.IsValid(position).Length == 0)
                 {
@@ -140,6 +144,7 @@ namespace VismaCaseTest
                 secondPosition.StartTime = new DateTime(2023, 7, 1);
                 secondPosition.EndTime = new DateTime(2025, 7, 1);
                 secondPosition.Employee = await eProvider.GetById(1);
+                secondPosition.EmployeeId = secondPosition.Employee.Id;
 
                 if (pValidator.IsValid(secondPosition).Length == 0)
                 {
@@ -150,7 +155,9 @@ namespace VismaCaseTest
                 workTask.Name = "Løs case";
                 var wEmployee = await eProvider.GetById(1);
                 workTask.Employee = wEmployee;
+                workTask.EmployeeId = wEmployee.Id;
                 workTask.Date = new DateTime(2024, 9, 17);
+               
                 if (wValidator.IsValid(workTask).Length == 0)
                 {
                     await wProvider.Add(workTask);
@@ -191,6 +198,7 @@ namespace VismaCaseTest
                 position.StartTime = new DateTime(2022, 2, 1);
                 position.EndTime = new DateTime(2024, 7, 1);
                 position.Employee = await eProvider.GetById(1);
+                position.EmployeeId = position.Employee.Id;
 
                 if (pValidator.IsValid(position).Length == 0)
                 {
@@ -202,6 +210,7 @@ namespace VismaCaseTest
                 secondPosition.StartTime = new DateTime(2023, 7, 1);
                 secondPosition.EndTime = new DateTime(2025, 7, 1);
                 secondPosition.Employee = await eProvider.GetById(1);
+                secondPosition.EmployeeId = secondPosition.Employee.Id;
 
                 if (pValidator.IsValid(secondPosition).Length == 0)
                 {
@@ -216,6 +225,7 @@ namespace VismaCaseTest
                 thirdPosition.StartTime = new DateTime(2021, 7, 1);
                 thirdPosition.EndTime = new DateTime(2023, 7, 1);
                 thirdPosition.Employee = await eProvider.GetById(1);
+                thirdPosition.EmployeeId = thirdPosition.Employee.Id;
 
                 if (pValidator.IsValid(thirdPosition).Length == 0)
                 {
@@ -230,6 +240,7 @@ namespace VismaCaseTest
                 fourthPosition.StartTime = new DateTime(2021, 1, 1);
                 fourthPosition.EndTime = new DateTime(2026, 1, 1);
                 fourthPosition.Employee = await eProvider.GetById(1);
+                fourthPosition.EmployeeId = fourthPosition.Employee.Id;
 
                 if (pValidator.IsValid(fourthPosition).Length == 0)
                 {
@@ -269,6 +280,7 @@ namespace VismaCaseTest
                 position.StartTime = new DateTime(2022, 2, 1);
                 position.EndTime = new DateTime(2023, 7, 1);
                 position.Employee = await eProvider.GetById(1);
+                position.EmployeeId = position.Employee.Id;
 
                 if (pValidator.IsValid(position).Length == 0)
                 {
@@ -280,6 +292,7 @@ namespace VismaCaseTest
                 secondPosition.StartTime = new DateTime(2023, 7, 3);
                 secondPosition.EndTime = new DateTime(2025, 7, 1);
                 secondPosition.Employee = await eProvider.GetById(1);
+                secondPosition.EmployeeId = secondPosition.Employee.Id;
 
                 if (pValidator.IsValid(secondPosition).Length == 0)
                 {
@@ -289,6 +302,7 @@ namespace VismaCaseTest
                 var newTask = new WorkTask();
                 newTask.Name = "Case";
                 newTask.Employee = await eProvider.GetById(1);
+                newTask.EmployeeId = newTask.Employee.Id;
                 newTask.Date = new DateTime(2023, 7, 2);
 
                 if (wValidator.IsValid(newTask).Length == 0)
