@@ -47,6 +47,9 @@ namespace VismaCaseTest
         }
 
         [Fact]
+        // Tester at det er mulig å legge til en Ansatt,
+        // en stilling for den ansatte og en oppgave
+        // innen perioden for stillingen
         public async void SimpleCase()
         {
             using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
@@ -99,6 +102,9 @@ namespace VismaCaseTest
         }
 
         [Fact]
+        // Sjekker at en oppgave havner på
+        // riktig stilling dersom det er 
+        // flere stillinger for den ansatte
         public async void CorrectPosition()
         {
             using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
@@ -155,7 +161,12 @@ namespace VismaCaseTest
             }
         }
 
+
         [Fact]
+        // Sjekker at det kommer exception om man legger til en stilling
+        // som starter eller slutter samtidig som en annen stilling
+        // eller om en stilling starter før og slutter etter en
+        // eksisterende stilling
         public async void Overlap()
         {
             using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
@@ -232,6 +243,8 @@ namespace VismaCaseTest
         }
 
         [Fact]
+        // Sjekker at det kommer en exception om man legger
+        // til en oppgave utenfor et stillingsforhold
         public async void NoPositionForCase()
         {
             using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
