@@ -27,19 +27,19 @@ namespace VismaCase
             modelBuilder.Entity<Employee>(entity =>
             {
                 entity.HasKey(e => e.Id);
-                // entity.HasIndex("FirstName", "LastName").IsUnique();
+                entity.HasIndex("FirstName", "LastName").IsUnique();
             });
             modelBuilder.Entity<Position>(entity =>
             {
                 entity.HasKey(p => p.Id);
                 entity.HasOne(p => p.Employee);
-                // entity.HasIndex("Name", "EmployeeId", "StartTime", "EndTime").IsUnique();
+                entity.HasIndex("Name", "EmployeeId", "StartTime", "EndTime").IsUnique();
             });
             modelBuilder.Entity<WorkTask>(entity =>
             {
                 entity.HasKey(t => t.Id);
                 entity.HasOne(t => t.Employee);
-                // entity.HasIndex("Name", "EmployeeId", "Date").IsUnique();
+                entity.HasIndex("Name", "EmployeeId", "Date").IsUnique();
             });
             base.OnModelCreating(modelBuilder);
         }

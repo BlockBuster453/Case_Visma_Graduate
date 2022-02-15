@@ -14,6 +14,16 @@ namespace VismaCase.Services
                 errors.Add("Oppgaven må ha et navn");
             }
 
+            if (task.EmployeeId == 0)
+            {
+                errors.Add("Oppgaven må ha en ansatt Id");
+            }
+
+            if (task.Date.Ticks == 0)
+            {
+                errors.Add("Oppgaven må ha en dato");
+            }
+
             var errorArray = errors.ToArray();
             return errorArray;
         }
