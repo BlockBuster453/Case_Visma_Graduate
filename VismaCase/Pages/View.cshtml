@@ -1,0 +1,30 @@
+@page
+@model ViewModel
+@{
+    ViewData["Title"] = "View";
+}
+
+<div class="text-center">
+    <h1>Oversikt</h1>
+    <h3>Ansatte</h3>
+    <ul style="list-style: none;">
+        @foreach (var employee in Model.Employees)
+        {
+            <li>@employee.Id - @employee.FirstName @employee.LastName</li>
+        }
+    </ul>
+    <h3>Stillinger</h3>
+    <ul style="list-style: none;">
+        @foreach (var position in Model.Positions)
+        {
+            <li>@position.Id - @position.Name: @position.Employee.FirstName @position.Employee.LastName</li>
+        }
+    </ul>
+    <h3>Oppgaver</h3>
+    <ul style="list-style: none;">
+        @foreach (var task in Model.WorkTasks)
+        {
+            <li>@task.Id - @task.Name: @task.Employee.FirstName @task.Employee.LastName</li>
+        }
+    </ul>
+</div>

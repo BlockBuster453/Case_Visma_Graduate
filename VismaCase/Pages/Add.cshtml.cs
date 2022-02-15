@@ -1,5 +1,4 @@
 using System;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -18,9 +17,14 @@ namespace VismaCase.Pages
         private readonly IWorkTaskProvider _workTaskProvider;
         private readonly IWorkTaskValidator _workTaskValidator;
 
+        [ViewData]
         public Employee[] Employees { get; set; }
+        [ViewData]
         public Position[] Positions { get; set; }
+        [ViewData]
         public WorkTask[] WorkTasks { get; set; }
+        [ViewData]
+        public string Message { get; set; }
 
         public AddModel(ILogger<AddModel> logger,
                         IEmployeeProvider employeeProvider,
@@ -44,9 +48,51 @@ namespace VismaCase.Pages
             Employees = await _employeeProvider.GetAll();
             Positions = await _positionProvider.GetAll();
             WorkTasks = await _workTaskProvider.GetAll();
+            Message = "";
         }
 
-        public async Task<IActionResult> AddEmployee()
+        public IActionResult OnPost()
+        {
+            if (!string.IsNullOrWhiteSpace(Request.Form["FirstName"].ToString()))
+            {
+                try
+                {
+                    AddEmployee();
+                    Message = "Ny ansatt lagt til";
+                }
+                catch (Exception)
+                {
+                    Message = "Noe gikk galt";
+                }
+            }
+            if (!string.IsNullOrWhiteSpace(Request.Form["PosName"].ToString()))
+            {
+                try
+                {
+                    AddPosition();
+                    Message = "Ny stilling lagt til";
+                }
+                catch (Exception)
+                {
+                    Message = "Noe gikk galt";
+                }
+            }
+            if (!string.IsNullOrWhiteSpace(Request.Form["TaskName"].ToString()))
+            {
+                try
+                {
+                    AddTask();
+                    Message = "Ny oppgave lagt til";
+                }
+                catch (Exception)
+                {
+                    Message = "Noe gikk galt";
+                }
+            }
+            return RedirectToPage();
+        }
+
+        public async void AddEmployee()
         {
             var firstName = Request.Form["FirstName"].ToString();
             var lastName = Request.Form["LastName"].ToString();
@@ -59,9 +105,8 @@ namespace VismaCase.Pages
             {
                 await _employeeProvider.Add(employee);
             }
-            return Page();
         }
-        public async Task<IActionResult> AddPosition()
+        public async void AddPosition()
         {
             var name = Request.Form["PosName"];
             var employeeString = Request.Form["PosEmployee"].ToString();
@@ -69,11 +114,11 @@ namespace VismaCase.Pages
             var employee = await _employeeProvider.GetById(employeeId);
 
             var fromDateString = Request.Form["PosDateFrom"].ToString();
-            var fromDate = DateTime.ParseExact(fromDateString, "yyy-MM-dd",
+            var fromDate = DateTime.ParseExact(fromDateString, "yyyy-MM-dd",
                                                 System.Globalization.CultureInfo.InvariantCulture);
 
             var toDateString = Request.Form["PosDateTo"].ToString();
-            var toDate = DateTime.ParseExact(toDateString, "yyy-MM-dd",
+            var toDate = DateTime.ParseExact(toDateString, "yyyy-MM-dd",
                                                 System.Globalization.CultureInfo.InvariantCulture);
 
             var position = new Position();
@@ -86,10 +131,8 @@ namespace VismaCase.Pages
             {
                 await _positionProvider.Add(position);
             }
-
-            return Page();
         }
-        public async Task<IActionResult> AddTask()
+        public async void AddTask()
         {
             var name = Request.Form["TaskName"].ToString();
             var employeeString = Request.Form["TaskEmployee"].ToString();
@@ -97,7 +140,7 @@ namespace VismaCase.Pages
             var employee = await _employeeProvider.GetById(employeeId);
 
             var dateString = Request.Form["TaskDate"].ToString();
-            var date = DateTime.ParseExact(dateString, "yyy-MM-dd",
+            var date = DateTime.ParseExact(dateString, "yyyy-MM-dd",
                                                 System.Globalization.CultureInfo.InvariantCulture);
 
             var task = new WorkTask();
@@ -109,8 +152,6 @@ namespace VismaCase.Pages
             {
                 await _workTaskProvider.Add(task);
             }
-
-            return Page();
         }
     }
 }

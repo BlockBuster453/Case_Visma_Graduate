@@ -92,3 +92,5 @@
 /Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/obj/Debug/net5.0/ref/VismaCase.dll
 /Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/obj/Debug/net5.0/VismaCase.pdb
 /Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/obj/Debug/net5.0/VismaCase.genruntimeconfig.cache
+/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/obj/Debug/net5.0/Razor/Pages/Search.cshtml.g.cs
+/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/obj/Debug/net5.0/Razor/Pages/View.cshtml.g.cs

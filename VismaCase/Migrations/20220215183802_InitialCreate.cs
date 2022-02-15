@@ -28,59 +28,93 @@ namespace VismaCase.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
-                    Employee_Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    EmployeeId = table.Column<int>(type: "INTEGER", nullable: false),
                     StartTime = table.Column<DateTime>(type: "TEXT", nullable: false),
                     EndTime = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Positions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Positions_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tasks",
+                name: "WorkTasks",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
-                    Employee_Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Date = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    EmployeeId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Date = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    PositionId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tasks", x => x.Id);
+                    table.PrimaryKey("PK_WorkTasks", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_WorkTasks_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_WorkTasks_Positions_PositionId",
+                        column: x => x.PositionId,
+                        principalTable: "Positions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employees_Id",
+                name: "IX_Employees_FirstName_LastName",
                 table: "Employees",
-                column: "Id",
+                columns: new[] { "FirstName", "LastName" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Positions_Id",
+                name: "IX_Positions_EmployeeId",
                 table: "Positions",
-                column: "Id",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Positions_Name_EmployeeId_StartTime_EndTime",
+                table: "Positions",
+                columns: new[] { "Name", "EmployeeId", "StartTime", "EndTime" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tasks_Id",
-                table: "Tasks",
-                column: "Id",
+                name: "IX_WorkTasks_EmployeeId",
+                table: "WorkTasks",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WorkTasks_Name_EmployeeId_Date",
+                table: "WorkTasks",
+                columns: new[] { "Name", "EmployeeId", "Date" },
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WorkTasks_PositionId",
+                table: "WorkTasks",
+                column: "PositionId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Employees");
+                name: "WorkTasks");
 
             migrationBuilder.DropTable(
                 name: "Positions");
 
             migrationBuilder.DropTable(
-                name: "Tasks");
+                name: "Employees");
         }
     }
 }

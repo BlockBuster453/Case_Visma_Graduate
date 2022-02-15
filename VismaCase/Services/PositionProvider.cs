@@ -17,6 +17,7 @@ namespace VismaCase.Services
         public async Task Add(Position position)
         {
             var employee = position.Employee;
+            position.EmployeeId = employee.Id;
             var employeePositions = await GetPositionsForEmployee(employee);
             if (employeePositions.Length > 0)
             {
@@ -33,8 +34,16 @@ namespace VismaCase.Services
                     }
                     else
                     {
-                        await _db.Positions.AddAsync(position);
-                        await _db.SaveChangesAsync();
+                        try
+                        {
+                            await _db.Positions.AddAsync(position);
+                            await _db.SaveChangesAsync();
+                        }
+                        catch (Exception)
+                        {
+                            throw new Exception();
+                        }
+
                     }
                 }
             }

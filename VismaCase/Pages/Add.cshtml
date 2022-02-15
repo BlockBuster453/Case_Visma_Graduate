@@ -1,5 +1,5 @@
 @page
-@model AddModel
+@model VismaCase.Pages.AddModel
 @{
     ViewData["Title"] = "Add";
 }
@@ -7,47 +7,56 @@
 <div class="text-center">
     <fieldset>
         <legend>Legg til ansatt</legend>
-        <form method="post" asp-page-handler="AddEmployee">
+        <form method="post">
             <label for="FirstName">Fornavn:</label>
             <input type="text" id="FirstName" name="FirstName" required><br>
             <label for="LastName">Etternavn:</label>
             <input type="text" id="LastName" name="LastName" required><br>
+            <button type="submit">Legg til</button>
         </form>
-    </fieldset>
-    <fieldset>
-        <legend>Legg til stilling</legend>
-        <form method="post" asp-page-handler="AddPosition">
-            <label for="PosName">Tittel:</label>
-            <input type="text" id="PosName" name="PosName" required><br>
-            <label for="PosEmployee">Ansatt:</label>
-            <input list="PosEmployees" name="PosEmployee" id="PosEmployee" required>
-            <datalist id="PosEmployees">
-                @foreach (var emp in Model.Employees)
-                {
-                    <option value="@emp.Id - @emp.FirstName @emp.LastName"></option>
-                }
-            </datalist>
-            <label for="PosDateFrom">Fra:</label>
-            <input type="date" id="PosDateFrom" name="PosDateFrom" required>
-            <label for="PosDateTo">Til:</label>
-            <input type="date" id="PosDateTo" name="PosDateTo" required>
-        </form>
-    </fieldset>
-    <fieldset>
-        <legend>Legg til oppgave</legend>
-        <form method="post" asp-page-handler="AddTask">
-            <label for="TaskName">Oppgavenavn:</label>
-            <input id="TaskName" name="TaskName" required>
-            <label for="TaskEmployee">Ansatt:</label>
-            <input list="TaskEmployee" name="TaskEmployee" id="TaskEmployee" required>
-            <datalist id="TaskEmployee">
-                @foreach (var emp in Model.Employees)
-                {
-                    <option value="@emp.Id - @emp.FirstName @emp.LastName"></option>
-                }
-            </datalist>
-            <label for="TaskDate">Dato:</label>
-            <input type="date" id="TaskDate" name="TaskDate" required>
-        </form>
-    </fieldset>
+    </fieldset><br/>
+    @if (Model != null)
+    {
+        <fieldset>
+            <legend>Legg til stilling</legend>
+            <form method="post">
+                <label for="PosName">Tittel:</label>
+                <input type="text" id="PosName" name="PosName" required><br>
+                <label for="PosEmployee">Ansatt:</label>
+                    <input list="PosEmployees" name="PosEmployee" id="PosEmployee" required>
+                <datalist id="PosEmployees">
+                    @foreach (var emp in Model.Employees)
+                    {
+                        <option value="@emp.Id - @emp.FirstName @emp.LastName"></option>
+                    }
+                    </datalist><br />
+                <label for="PosDateFrom">Fra:</label>
+                    <input type="date" id="PosDateFrom" name="PosDateFrom" required><br />
+                <label for="PosDateTo">Til:</label>
+                <input type="date" id="PosDateTo" name="PosDateTo" required><br/>
+                <button type="submit">Legg til</button>
+            </form>
+        </fieldset><br/>
+    }
+    @if (Model != null)
+    {
+        <fieldset>
+            <legend>Legg til oppgave</legend>
+            <form method="post">
+                <label for="TaskName">Oppgavenavn:</label>
+                <input id="TaskName" name="TaskName" required><br/>
+                <label for="TaskEmployee">Ansatt:</label>
+                <input list="TaskEmployees" name="TaskEmployee" id="TaskEmployee" required>
+                <datalist id="TaskEmployees">
+                    @foreach (var emp in Model.Employees)
+                    {
+                        <option value="@emp.Id - @emp.FirstName @emp.LastName"></option>
+                    }
+                    </datalist><br />
+                <label for="TaskDate">Dato:</label>
+                    <input type="date" id="TaskDate" name="TaskDate" required><br />
+                <button type="submit">Legg til</button>
+            </form>
+        </fieldset>
+    }
 </div>

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Threading.Tasks;
 using VismaCase.Models;
 
@@ -14,8 +15,14 @@ namespace VismaCase.Services
 
         public async Task Add(Employee employee)
         {
-            await _db.Employees.AddAsync(employee);
-            await _db.SaveChangesAsync();
+            try 
+            {
+                await _db.Employees.AddAsync(employee);
+                await _db.SaveChangesAsync();
+            } catch (Exception)
+            {
+                throw new Exception();
+            }
         }
 
         public async Task<Employee[]> GetAll()

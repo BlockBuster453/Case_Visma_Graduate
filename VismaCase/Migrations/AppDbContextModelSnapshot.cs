@@ -2,17 +2,15 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VismaCase;
 
 namespace VismaCase.Migrations
 {
-    [DbContext(typeof(AppContext))]
-    [Migration("20220214192054_InitialCreate")]
-    partial class InitialCreate
+    [DbContext(typeof(AppDbContext))]
+    partial class AppDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,20 +30,20 @@ namespace VismaCase.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id")
+                    b.HasIndex("FirstName", "LastName")
                         .IsUnique();
 
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("VismaCase.Position", b =>
+            modelBuilder.Entity("VismaCase.Models.Position", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("Employee_Id")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("TEXT");
@@ -58,13 +56,15 @@ namespace VismaCase.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id")
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("Name", "EmployeeId", "StartTime", "EndTime")
                         .IsUnique();
 
                     b.ToTable("Positions");
                 });
 
-            modelBuilder.Entity("VismaCase.Task", b =>
+            modelBuilder.Entity("VismaCase.Models.WorkTask", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -73,18 +73,53 @@ namespace VismaCase.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("Employee_Id")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("PositionId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("Id")
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("PositionId");
+
+                    b.HasIndex("Name", "EmployeeId", "Date")
                         .IsUnique();
 
-                    b.ToTable("Tasks");
+                    b.ToTable("WorkTasks");
+                });
+
+            modelBuilder.Entity("VismaCase.Models.Position", b =>
+                {
+                    b.HasOne("VismaCase.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("VismaCase.Models.WorkTask", b =>
+                {
+                    b.HasOne("VismaCase.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VismaCase.Models.Position", "Position")
+                        .WithMany()
+                        .HasForeignKey("PositionId");
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("Position");
                 });
 #pragma warning restore 612, 618
         }

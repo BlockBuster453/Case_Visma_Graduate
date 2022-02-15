@@ -18,9 +18,11 @@ namespace VismaCase.Services
         {
             var validTime = false;
             var employee = task.Employee;
+            task.EmployeeId = employee.Id;
             var pProvider = new PositionProvider(_db);
             var employeePositions = await pProvider.GetPositionsForEmployee(employee);
-            if (employeePositions.Length > 0) {
+            if (employeePositions.Length > 0)
+            {
                 foreach (var pos in employeePositions)
                 {
                     // Om tidspunktet for en oppgave er i tidsrommet for minst
@@ -30,9 +32,18 @@ namespace VismaCase.Services
                     {
                         validTime = true;
                         task.Position = pos;
-                        await _db.WorkTasks.AddAsync(task);
-                        await _db.SaveChangesAsync();
-                        return;
+                        try
+                        {
+                            await _db.WorkTasks.AddAsync(task);
+                            await _db.SaveChangesAsync();
+                            return;
+                        }
+                        catch (Exception)
+                        {
+                            throw new Exception();
+                        }
+
+
                     }
                 }
                 if (!validTime)
@@ -40,7 +51,8 @@ namespace VismaCase.Services
                     throw new Exception("Ingen stilling på dette tidspunktet");
                 }
             }
-            else {
+            else
+            {
                 throw new Exception("Ingen stillinger for denne ansatte");
             }
         }
