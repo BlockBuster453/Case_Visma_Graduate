@@ -22,12 +22,12 @@ namespace VismaCase.Services
             {
                 foreach (var pos in employeePositions)
                 {
-                    if ((position.StartTime.Ticks > pos.StartTime.Ticks
-                        && position.StartTime.Ticks < pos.EndTime.Ticks) // Ser om en stilling starter samtidig som en annen holder på
-                        || (position.EndTime.Ticks < pos.EndTime.Ticks
-                        && position.EndTime.Ticks > pos.StartTime.Ticks)
-                        || (position.StartTime.Ticks < pos.StartTime.Ticks
-                        && position.EndTime.Ticks > pos.EndTime.Ticks)) // Ser om en stilling avslutter samtidig som en annen holder på
+                    if ((position.StartTime.Ticks >= pos.StartTime.Ticks
+                        && position.StartTime.Ticks <= pos.EndTime.Ticks) // Ser om en stilling starter samtidig som en annen holder på
+                        || (position.EndTime.Ticks <= pos.EndTime.Ticks
+                        && position.EndTime.Ticks >= pos.StartTime.Ticks)
+                        || (position.StartTime.Ticks <= pos.StartTime.Ticks
+                        && position.EndTime.Ticks >= pos.EndTime.Ticks)) // Ser om en stilling avslutter samtidig som en annen holder på
                     {
                         throw new Exception("Ugyldig (Overlapper med annen stilling)");
                     }

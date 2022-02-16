@@ -1,0 +1,32 @@
+@page
+@model SearchModel
+@{
+    ViewData["Title"] = "Search";
+}
+
+<div class="text-center">
+    <form method="post">
+        <label for="Type">Søk etter:</label>
+        <input list="Types" name="Type" id="Type" required>
+        <datalist id="Types">
+            <option value="Ansatte"></option>
+            <option value="Stillinger"></option>
+            <option value="Oppgaver"></option>
+        </datalist><br />
+        <label for="Id">Id:</label>
+        <input type="number" name="Id" id="Id"><br />
+        <button type="submit">Søk</button>
+    </form><br />
+    @if (Model.Employee != null)
+    {
+        <p>Ansatt: @Model.Employee.FirstName</p>
+    }
+    else if (Model.Position != null)
+    {
+        <p>Stilling: @Model.Position.Name</p>
+    }
+    else if (Model.WorkTask != null)
+    {
+        <p>Oppgave: @Model.WorkTask.Name</p>
+    }
+</div>
