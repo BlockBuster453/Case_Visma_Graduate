@@ -141,7 +141,7 @@ namespace VismaCaseTest
 
                 var secondPosition = new Position();
                 secondPosition.Name = "Junior utvikler";
-                secondPosition.StartTime = new DateTime(2023, 7, 1);
+                secondPosition.StartTime = new DateTime(2023, 7, 2);
                 secondPosition.EndTime = new DateTime(2025, 7, 1);
                 secondPosition.Employee = await eProvider.GetById(1);
                 secondPosition.EmployeeId = secondPosition.Employee.Id;
