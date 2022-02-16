@@ -9,7 +9,7 @@ using VismaCase;
 namespace VismaCase.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220216135220_InitialCreate")]
+    [Migration("20220216194203_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
