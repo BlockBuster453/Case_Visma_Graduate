@@ -30,6 +30,11 @@ namespace VismaCase.Services
                 errors.Add("Stillingen må ha en slutttid");
             }
 
+            if (position.StartTime.Ticks > position.EndTime.Ticks)
+            {
+                errors.Add("Starttid må være før sluttid");
+            }
+
             var errorArray = errors.ToArray();
             return errorArray;
         }

@@ -297,7 +297,6 @@
 /Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCaseTest/bin/Debug/net5.0/refs/System.Xml.XPath.dll
 /Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCaseTest/bin/Debug/net5.0/refs/System.Xml.XPath.XDocument.dll
 /Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCaseTest/bin/Debug/net5.0/refs/WindowsBase.dll
-/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCaseTest/bin/Debug/net5.0/Bogus.dll
 /Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCaseTest/bin/Debug/net5.0/Castle.Core.dll
 /Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCaseTest/bin/Debug/net5.0/Microsoft.AspNetCore.Mvc.Testing.dll
 /Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCaseTest/bin/Debug/net5.0/Microsoft.AspNetCore.TestHost.dll

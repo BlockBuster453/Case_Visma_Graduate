@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "v/ZizuHtkEsqMKQ7sp39jH+zWS/s8EZVV52hV994H4nRi1flyf1U+wcNOBe+dvLPpFZSI9joUQIY52AEPj1nVg==",
+  "dgSpecHash": "eY1BMAw8qUkxh+xcJ3xg+6v7a/t8+zS8Ptbuuk+8zEIVmP3ukqi+HAUlOAh3pIFvQdscovWt3DVv1hMsqy+fsg==",
   "success": true,
   "projectFilePath": "/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/VismaCase.csproj",
   "expectedPackageFiles": [
-    "/Users/edvingrytnes/.nuget/packages/bogus/33.1.1/bogus.33.1.1.nupkg.sha512",
     "/Users/edvingrytnes/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/Users/edvingrytnes/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/Users/edvingrytnes/.nuget/packages/microsoft.data.sqlclient/2.0.1/microsoft.data.sqlclient.2.0.1.nupkg.sha512",

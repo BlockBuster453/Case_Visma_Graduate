@@ -29,5 +29,4 @@ namespace VismaCaseTest
             return builder.Options;
         }
     }
-
 }

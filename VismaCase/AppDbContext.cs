@@ -39,6 +39,7 @@ namespace VismaCase
             {
                 entity.HasKey(t => t.Id);
                 entity.HasOne(t => t.Employee);
+                entity.HasOne(t => t.Position);
                 entity.HasIndex("Name", "EmployeeId", "Date").IsUnique();
             });
             base.OnModelCreating(modelBuilder);

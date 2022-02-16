@@ -18,7 +18,6 @@ namespace VismaCase.Services
         {
             var validTime = false;
             var employee = task.Employee;
-            task.EmployeeId = employee.Id;
             var pProvider = new PositionProvider(_db);
             var employeePositions = await pProvider.GetPositionsForEmployee(employee);
             if (employeePositions.Length > 0)

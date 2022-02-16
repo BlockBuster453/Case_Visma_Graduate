@@ -108,7 +108,7 @@ namespace VismaCase.Pages
         }
         public async void AddPosition()
         {
-            var name = Request.Form["PosName"];
+            var name = Request.Form["PosName"].ToString();
             var employeeString = Request.Form["PosEmployee"].ToString();
             var employeeId = int.Parse(employeeString.Split('-')[0].Trim());
             var employee = await _employeeProvider.GetById(employeeId);
@@ -125,6 +125,7 @@ namespace VismaCase.Pages
             position.Name = name;
             position.Employee = employee;
             position.StartTime = fromDate;
+            position.EmployeeId = employeeId;
             position.EndTime = toDate;
 
             if (_positionValidator.IsValid(position).Length == 0)
@@ -147,6 +148,7 @@ namespace VismaCase.Pages
             task.Name = name;
             task.Employee = employee;
             task.Date = date;
+            task.EmployeeId = employeeId;
 
             if (_workTaskValidator.IsValid(task).Length == 0)
             {

@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "GGShevv2nXFyri16AUT90KRRcON0o7fq7Yd5jHsCYWe2t+besst3NoqlMo8YGAPZwY+NkYglLqJTCu0Pe71jow==",
+  "dgSpecHash": "uBtZ5DO8Bqi9rCKzjhx6VXyafG4TFItlakhJjJelW3GmqmlzK/0IjrrES+G3Azr2fLxRXPdnTH7mVo4CyP168A==",
   "success": true,
   "projectFilePath": "/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCaseTest/VismaCaseTest.csproj",
   "expectedPackageFiles": [
-    "/Users/edvingrytnes/.nuget/packages/bogus/33.1.1/bogus.33.1.1.nupkg.sha512",
     "/Users/edvingrytnes/.nuget/packages/castle.core/4.4.0/castle.core.4.4.0.nupkg.sha512",
     "/Users/edvingrytnes/.nuget/packages/coverlet.collector/3.0.2/coverlet.collector.3.0.2.nupkg.sha512",
     "/Users/edvingrytnes/.nuget/packages/microsoft.aspnetcore.mvc.testing/5.0.0/microsoft.aspnetcore.mvc.testing.5.0.0.nupkg.sha512",

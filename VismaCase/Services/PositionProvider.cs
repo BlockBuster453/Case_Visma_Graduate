@@ -17,7 +17,6 @@ namespace VismaCase.Services
         public async Task Add(Position position)
         {
             var employee = position.Employee;
-            position.EmployeeId = employee.Id;
             var employeePositions = await GetPositionsForEmployee(employee);
             if (employeePositions.Length > 0)
             {

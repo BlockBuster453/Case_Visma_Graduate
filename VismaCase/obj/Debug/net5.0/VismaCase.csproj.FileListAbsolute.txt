@@ -16,7 +16,6 @@
 /Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/bin/Debug/net5.0/VismaCase.pdb
 /Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/bin/Debug/net5.0/VismaCase.Views.dll
 /Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/bin/Debug/net5.0/VismaCase.Views.pdb
-/Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/bin/Debug/net5.0/Bogus.dll
 /Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/bin/Debug/net5.0/Humanizer.dll
 /Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/bin/Debug/net5.0/Microsoft.Data.SqlClient.dll
 /Users/edvingrytnes/Visma Case/Case_Visma_Graduate/VismaCase/bin/Debug/net5.0/Microsoft.Data.Sqlite.dll

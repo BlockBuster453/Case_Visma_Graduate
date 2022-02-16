@@ -314,6 +314,41 @@ namespace VismaCaseTest
                 }
             }
         }
+
+        [Fact]
+        public async void TestDuplicate() 
+        {
+            using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
+            {
+                var eProvider = new EmployeeProvider(db);
+                var eValidator = new EmployeeValidator();
+                var pProvider = new PositionProvider(db);
+                var pValidator = new PositionValidator();
+                var wProvider = new WorkTaskProvider(db);
+                var wValidator = new WorkTaskValidator();
+
+                var employee = new Employee();
+                employee.FirstName = "Edvin";
+                employee.LastName = "Grytnes";
+
+                if (eValidator.IsValid(employee).Length == 0)
+                {
+                    await eProvider.Add(employee);
+                }
+
+                var newEmployee = new Employee();
+                newEmployee.FirstName = "Edvin";
+                newEmployee.LastName = "Grytnes";
+
+                if (eValidator.IsValid(employee).Length == 0)
+                {
+                    await Assert.ThrowsAsync<Exception>(async () =>
+                    {
+                        await eProvider.Add(employee);
+                    });
+                }
+            }
+        }
     }
 }
 

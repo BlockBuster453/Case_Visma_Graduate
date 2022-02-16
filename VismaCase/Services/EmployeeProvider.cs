@@ -15,11 +15,12 @@ namespace VismaCase.Services
 
         public async Task Add(Employee employee)
         {
-            try 
+            try
             {
                 await _db.Employees.AddAsync(employee);
                 await _db.SaveChangesAsync();
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 throw new Exception();
             }
