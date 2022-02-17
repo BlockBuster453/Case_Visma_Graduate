@@ -19,7 +19,7 @@
     </form><br />
     @if (Model.Employee != null)
     {
-        <p>Ansatt: @Model.Employee.FirstName</p>
+        <p>Ansatt: @Model.Employee.FirstName @Model.Employee.LastName</p>
     }
     else if (Model.Position != null)
     {

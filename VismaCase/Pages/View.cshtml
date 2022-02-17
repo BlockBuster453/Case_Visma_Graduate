@@ -18,6 +18,9 @@
         @foreach (var position in Model.Positions)
         {
             <li>@position.Id - @position.Name: @position.Employee.FirstName @position.Employee.LastName</li>
+            <ul style="list-style: none;">
+                    <li>@position.StartTime.ToString("dd/MM/yyyy") - @position.EndTime.ToString("dd/MM/yyyy")</li>
+            </ul>
         }
     </ul>
     <h3>Oppgaver</h3>
@@ -25,6 +28,9 @@
         @foreach (var task in Model.WorkTasks)
         {
             <li>@task.Id - @task.Name: @task.Employee.FirstName @task.Employee.LastName</li>
+            <ul style="list-style: none;">
+                <li>@task.Date.ToString("dd/MM/yyyy")</li>
+            </ul>
         }
     </ul>
 </div>
